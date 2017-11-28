@@ -1,3 +1,4 @@
+
 <?php
 
 namespace GuardianJoinEffect;
@@ -8,7 +9,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
-
+use pocketmine\utils\TextFormat as c;
 class Main extends PluginBase implements Listener{
     
     public function onEnable(){
@@ -19,6 +20,7 @@ class Main extends PluginBase implements Listener{
     public function onJoin(PlayerJoinEvent $event){
         $player = $event->getPlayer();
         $this->getServer()->getScheduler()->scheduleDelayedTask(new ElderGuardianTask($this, $player), 30);
+        $player->addTitle(c::GOLD . c::BOLD . "Welcome to BadLandsPvP");
     }
     
     public function onDisable(){
